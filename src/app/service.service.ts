@@ -43,4 +43,8 @@ export class ServiceService {
     stubCont[2].id = 23
     return stubCont
   }
+
+  getMasComentados() {
+    return [new Contenido('mas comentados', 'txt',1), new Contenido('mas comentados', 'pdf',0), new Contenido('mas comentados', 'xml',15)]
+  }
 }
