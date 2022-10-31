@@ -1,0 +1,174 @@
+body{
+    flex-direction: column;
+}
+/* .menu{
+    position: fixed;
+    top: 0%;
+    right: 0%;
+    color: white;
+    font-size: 1.5rem;
+    padding: 1rem 2rem;
+} */
+.contenedor-links {
+    color: #FFFFFF;
+    position: fixed;
+    top: 0%;
+    right: 0%;
+    padding: 1em;
+    display: flex;
+}
+li {
+    list-style-type: none;
+    padding: 0.5em;
+}
+.contenedor-iconos {
+    display: flex;
+}
+.icono-contenido {
+    margin: 2rem;
+    font-size: 7em;
+    color: white;
+    display: flex;
+}
+.contenedor-contenido {
+    position: relative;
+}
+.fondo-musica {
+    width: 50%;
+    height: 50%;
+    position: absolute;
+    top: 30%;
+    right: 18%;
+    background: rgb(0,0,0);
+    background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,212,255,0) 100%);
+    z-index: 0;
+}
+.musica {
+    position: relative;
+    z-index: 1;
+}
+
+.video {
+    background-color: rgba(0,0,0,0.7);
+    border-radius: 100%;
+}
+
+.documento {
+    background-color: rgba(0,0,0,0.7);
+    border-top-right-radius: 100%;
+}
+
+.icono-contenido:hover {
+    scale: 1.1;
+}
+
+/* ------------------------------- ESTILO TABLAS -------------------------------*/
+.contenedor-tabla {
+    background: rgb(0,0,0);
+    background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,212,255,0) 100%);
+    width: 60%;
+    height: 65%;
+    display: flex;
+    justify-content: center;
+    padding: 2rem;
+    overflow-y: auto;
+  }
+  .contenedor-tabla .tabla {
+    color: #FFFFFF;
+    text-align: left;
+    border-collapse: collapse;
+    border: none;
+    display: flex;
+    flex-direction: column;
+  }
+  thead {
+    color: #FFFFFF;
+    width: 100%;  
+  }
+  td, th {
+    padding: 0.3em 0.5em;
+    text-align: center;
+  }
+  .cant-comentarios {
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 30%;
+  }
+  tr {
+    width: 100%;
+    border-bottom: 1px solid #FFFFFF;
+    border-radius: 0%;
+    display: grid;
+    grid-template-columns: repeat(3,30%);
+    justify-content: space-around;
+    color: #FFFFFF;
+  }
+  
+  .sin-contenido {
+    align-self: center;
+    padding: 1em;
+  }
+  th {
+    font-size: 16px;
+    font-weight: bold;
+    color: #FFFFFF;
+    border-radius: 0%;
+  }
+
+
+  tr:nth-child(even) {
+  background: rgba(0,0,0,0.5);
+  }
+  
+  
+  th:first-child {
+  border-left: none;
+  }
+  
+
+  /* .tabla tfoot .links {
+  text-align: right;
+  }
+  .tabla tfoot .links a{
+  display: inline-block;
+  background: #1C6EA4;
+  color: #FFFFFF;
+  padding: 2px 8px;
+  border-radius: 5px;
+  } */
+  
+  .contenedor-tabla::-webkit-scrollbar {
+  width: 8px;
+  }
+  .contenedor-tabla::-webkit-scrollbar-thumb {
+  background: var(--color-scroll);
+  border-radius: 4px;
+  }
+  
+  .contenedor-tabla::-webkit-scrollbar-thumb:hover {
+  background: var(--color-scroll-hover);
+  }
+  
+  
+  .contenedor-tabla::-webkit-scrollbar-track {
+  background: var(--color-sextenario);
+  border-radius: 4px;
+  }
+  
+  .contenedor-tabla::-webkit-scrollbar-track:hover, 
+  .contenedor-tabla::-webkit-scrollbar-track:active {
+  background: #d4d4d4;
+  }
+
+.contenedor-titulo-pagina {
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.titulo-mas-comentados {
+  font-size: 2em;
+  padding: 0.5em;
+}

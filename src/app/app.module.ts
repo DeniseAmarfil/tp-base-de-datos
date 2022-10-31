@@ -1,16 +1,26 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
+import { CommonModule } from '@angular/common'
+import { NgModule } from '@angular/core'
+import { FormsModule } from '@angular/forms'
+import { BrowserModule } from '@angular/platform-browser'
+import { routingComponents, AppRoutingModule } from './app-routing.module'
+import { AppComponent } from './app.component'
+import { ComentariosComponent } from './comentarios/comentarios.component'
+import { ContenidoComponent } from './contenido/contenido.component'
+import { PopupComponent } from './popup/popup.component'
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ContenidoComponent,
+    ComentariosComponent,
+    routingComponents,
+    PopupComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    FormsModule,
+    CommonModule,
+    AppRoutingModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

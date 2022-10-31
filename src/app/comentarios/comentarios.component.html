@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div class="contenedor-nombre-contenido">
+    <h1 class="nombre-contenido">{{tituloContenido}}</h1>
+  </div>
+  <div class="contenedor-principal">
+    <section class="comentario"></section>
+    <section class="contenedor-input">
+      <div class="subcontenedor-input">
+        <div class="titulo">
+          <label class="etiqueta" for="input-titulo">Titulo</label>
+          <input class="input-titulo" type="text" [(ngModel)]="titulo">
+        </div>
+        <div class="apodo">
+          <label class="etiqueta" for="input-apodo">Apodo</label>
+        <input class="input-apodo" type="text" [(ngModel)]="apodo">
+        </div>
+      </div>
+      
+      <label class="etiqueta" for="input-comentario">Comentario</label>
+      <input class="input-comentario" type="text" [(ngModel)]="descripcion">
+    </section>
+
+    <section class="contenedor-botones">
+      <button class="boton boton-secundario" (click)="irAContenidos()">Cancelar</button>
+      <button class="boton boton-primario" (click)="comentar()">Aceptar</button>
+    </section>
+  </div>
+  <app-popup></app-popup>
+  
+</body>
+</html>
+<router-outlet></router-outlet>

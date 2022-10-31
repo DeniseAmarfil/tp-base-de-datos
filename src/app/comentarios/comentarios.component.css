@@ -1,0 +1,76 @@
+body {
+    flex-direction: column;
+}
+.nombre-contenido {
+    padding: 1em;
+}
+.contenedor-principal {
+    width: 70%;
+    height: 50%;
+    background-color: rgba(20, 0, 31, 0.5);
+    padding: 3em;
+}
+
+.contenedor-input {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.subcontenedor-input {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.titulo {
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+}
+
+.apodo {
+    display: flex;
+    flex-direction: column;
+}
+
+.etiqueta {
+    color: white;
+}
+
+input {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    padding: 1em;
+    height: 3em;
+}
+ .input-comentario {
+    height: 100%;
+    display: flex;
+ }
+
+ .contenedor-botones {
+    display: flex;
+    justify-content: flex-end;
+ }
+
+ .boton {
+    margin-left: 1em;
+    padding: 0.5em 1em;
+    
+ }
+
+ .boton-secundario {
+    background-color:rgb(92, 116, 119);
+    border-color: rgb(255, 255, 255);
+ }
+
+ .boton-primario {
+    background-color: rgb(54, 24, 66);
+    border-color: aqua;
+    color: white;
+ }
+
+ app-popup {
+    position: fixed;
+ }
