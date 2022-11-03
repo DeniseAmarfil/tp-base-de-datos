@@ -1,12 +1,14 @@
 import { Comentario } from './../Dominio/Comentario';
 import { Contenido } from './../Dominio/Contenido';
 import { Injectable } from '@angular/core';
-
+import { HttpClient } from "@angular/common/http";
 @Injectable({
   providedIn: 'root'
 })
 export class ServiceService {
-  constructor() { }
+  // TO-DO - aca hay que cambiar la ruta dependiendo la que se use
+  private API_URL = 'http://127.0.0.1:5000/';
+  constructor(private http: HttpClient) { }
 
   // static contenido: Contenido
 
@@ -20,31 +22,18 @@ export class ServiceService {
   }
 
   getMusica() {
-    const stubCont = [new Contenido('aaaa', 'mp3',1), new Contenido('bbbbb', 'mp3',12), new Contenido('aaaa', 'mp3',13)]
-    stubCont[0].id = 1
-    stubCont[1].id = 2
-    stubCont[2].id = 3
-    return stubCont
+    return this.http.get<Contenido[]>(this.API_URL + 'contenidos_musica');
   }
 
   getVideos() {
-    const stubCont = [new Contenido('aaaa', 'mp4',343), new Contenido('bbbbb', 'mp4',43), new Contenido('aaaa', 'mp4',31243)]
-    stubCont[0].id = 11
-    stubCont[1].id = 12
-    stubCont[2].id = 13
-    
-    return stubCont
+    return this.http.get<Contenido[]>(this.API_URL + 'contenidos_video');
   }
 
   getDocumentos() {
-    const stubCont = [new Contenido('aaaa', 'txt',1), new Contenido('bbbbb', 'pdf',0), new Contenido('aaaa', 'xml',15)]
-    stubCont[0].id = 21
-    stubCont[1].id = 22
-    stubCont[2].id = 23
-    return stubCont
+    return this.http.get<Contenido[]>(this.API_URL + 'contenidos_documento');
   }
 
   getMasComentados() {
-    return [new Contenido('mas comentados', 'txt',1), new Contenido('mas comentados', 'pdf',0), new Contenido('mas comentados', 'xml',15)]
+    return this.http.get<Contenido[]>(this.API_URL + 'mas_comentados');
   }
 }

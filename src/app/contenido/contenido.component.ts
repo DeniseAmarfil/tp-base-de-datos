@@ -18,23 +18,24 @@ export class ContenidoComponent {
   seMuestranTodosLosContenidos = true
 
   musica() {
-    if(!this.canciones) {
-      this.canciones = this.service.getMusica()
-    }
-    this.contenidos = this.canciones
+      this.service.getMusica().subscribe(res => {
+        this.canciones = res
+      })
+      this.contenidos = this.canciones
+    
   }
 
   video() {
-    if(!this.videos) {
-      this.videos = this.service.getVideos()
-    }
+    this.service.getVideos().subscribe(res => {
+      this.videos = res
+    })
     this.contenidos = this.videos
   }
 
   documento() {
-    if(!this.documentos) {
-      this.documentos = this.service.getDocumentos()
-    }
+    this.service.getDocumentos().subscribe(res => {
+      this.documentos = res
+    })
     this.contenidos = this.documentos
   }
 
@@ -48,7 +49,10 @@ export class ContenidoComponent {
   }
 
   mostrarMasComentados() {
-    this.contenidos = this.service.getMasComentados()
+    this.service.getMasComentados().subscribe(res => {
+      this.contenidos = res
+
+    })
     this.seMuestranTodosLosContenidos = false
   }
 

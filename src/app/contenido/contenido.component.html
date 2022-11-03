@@ -35,7 +35,10 @@
     <div class="contenedor-tabla">
         <thead> 
             <tr> 
-                <th>Titulo</th> <th>Extension</th> <th>Cant comentarios</th>
+                <th>Titulo</th> 
+                <th *ngIf="seMuestranTodosLosContenidos">Extension</th> 
+                <th *ngIf="!seMuestranTodosLosContenidos">Tipo de contenido</th>
+                <th>Cant comentarios</th>
             </tr> 
             <table class="tabla"> 
                 <tbody> 

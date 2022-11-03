@@ -7,6 +7,7 @@ import { AppComponent } from './app.component'
 import { ComentariosComponent } from './comentarios/comentarios.component'
 import { ContenidoComponent } from './contenido/contenido.component'
 import { PopupComponent } from './popup/popup.component'
+import { HttpClientModule } from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { PopupComponent } from './popup/popup.component'
     FormsModule,
     CommonModule,
     AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
