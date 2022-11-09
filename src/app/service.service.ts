@@ -12,13 +12,14 @@ export class ServiceService {
 
   // static contenido: Contenido
 
-  comentar(idContenido: number, comentario: Comentario) {
-    // realizar comentario
+  comentar(comentario: Comentario) {
+    console.log(comentario)
+    return this.http.post<any>(this.API_URL + 'comentar', comentario );
   }
 
   buscarTituloContPorId(id: number) {
-    //Buscar contenido
-    return 'stub titulo contenido'
+    return this.http.get<Contenido[]>(this.API_URL + 'contenido/'+id );
+    //return 'stub titulo contenido'
   }
 
   getMusica() {

@@ -20,12 +20,16 @@ export class ComentariosComponent implements OnInit {
   @Input()
   descripcion!: string
 
-  tituloContenido!: string;
+  tituloContenido!: string | undefined;
 
 
   ngOnInit(): void {
     const idContenido = this.idContenido()
-    this.tituloContenido = this.service.buscarTituloContPorId(idContenido)
+    this.service.buscarTituloContPorId(idContenido).subscribe(res => {
+      let titulo = res.at(0)?.titulo + " - " + res.at(0)?.tipo_contenido 
+      this.tituloContenido = titulo
+    })
+    
   }
 
   irAContenidos() {
@@ -34,9 +38,10 @@ export class ComentariosComponent implements OnInit {
 
   comentar() {
     const idContenido = this.idContenido()
-    const comentario = new Comentario(this.titulo, this.apodo, this.descripcion)
-    this.service.comentar(idContenido, comentario)
-    this.confirmarEnvioDeComentario() /// Pasar al service
+    const comentario = new Comentario(this.titulo, this.apodo, this.descripcion, idContenido)
+    console.log(comentario)
+    this.service.comentar(comentario)
+    //this.confirmarEnvioDeComentario() /// Pasar al service
   }
 
   idContenido() {
