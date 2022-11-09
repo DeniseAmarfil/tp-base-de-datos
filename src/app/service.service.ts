@@ -1,5 +1,5 @@
 import { Comentario } from './../Dominio/Comentario';
-import { Contenido } from './../Dominio/Contenido';
+import { Contenido, MasComentados } from './../Dominio/Contenido';
 import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 @Injectable({
@@ -34,6 +34,6 @@ export class ServiceService {
   }
 
   getMasComentados() {
-    return this.http.get<Contenido[]>(this.API_URL + 'mas_comentados');
+    return this.http.get<MasComentados[]>(this.API_URL + 'mas_comentados');
   }
 }

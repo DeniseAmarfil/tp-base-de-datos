@@ -10,3 +10,12 @@ export class Contenido {
     comentarios: Comentario[] = []
 
 }
+export class MasComentados {
+    constructor(
+        public tipo_contenido: string,
+        public extension: string,
+        public cantComentarios: number,
+    ) {}
+}
+
+

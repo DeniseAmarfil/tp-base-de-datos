@@ -14,7 +14,7 @@
     </nav>
     <section *ngIf="!seMuestranTodosLosContenidos" class="contenedor-titulo-pagina">
         <h1 class="titulo-mas-comentados">Mas comentados</h1>
-        <h4>Top cinco de los mas comentados segun el tipo de contenido</h4>
+        <h4>Se muesta la cantidad de comentarios por extension y tipo de contenido</h4>
     </section>
     
     <div class="contenedor-iconos">
@@ -32,18 +32,35 @@
         </div>
 
     </div>
-    <div class="contenedor-tabla">
+    <div class="contenedor-tabla" *ngIf="seMuestranTodosLosContenidos">
         <thead> 
             <tr> 
                 <th>Titulo</th> 
                 <th *ngIf="seMuestranTodosLosContenidos">Extension</th> 
-                <th *ngIf="!seMuestranTodosLosContenidos">Tipo de contenido</th>
                 <th>Cant comentarios</th>
             </tr> 
             <table class="tabla"> 
                 <tbody> 
                     <tr *ngFor="let contenido of contenidos"> 
                         <td class="titulo vinculo" (click)="irAComentar(contenido.id)">{{contenido.titulo}}</td><td>{{contenido.extension}}</td><td class="cant-comentarios">{{contenido.cantComentarios}}</td>
+                    </tr>
+                    
+                </tbody>
+                <p *ngIf="noHayContenido()" class="sin-contenido">No se encontró contenido para mostrar.</p>
+            </table>
+        </thead> 
+    </div>
+    <div class="contenedor-tabla" *ngIf="!seMuestranTodosLosContenidos">
+        <thead> 
+            <tr> 
+                <th>Tipo contenido</th> 
+                <th>Extensión</th>
+                <th>Cant comentarios</th>
+            </tr> 
+            <table class="tabla"> 
+                <tbody> 
+                    <tr *ngFor="let a of masComentados"> 
+                        <td>{{a.tipo_contenido}}</td><td>{{a.extension}}</td><td class="cant-comentarios">{{a.cantComentarios}}</td>
                     </tr>
                     
                 </tbody>

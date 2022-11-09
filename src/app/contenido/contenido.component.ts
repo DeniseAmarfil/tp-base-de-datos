@@ -1,4 +1,4 @@
-import { Contenido } from './../../Dominio/Contenido';
+import { Contenido, MasComentados } from './../../Dominio/Contenido';
 import { ServiceService } from './../service.service';
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
@@ -16,6 +16,7 @@ export class ContenidoComponent {
   videos!: Contenido[]
   documentos!: Contenido[]
   seMuestranTodosLosContenidos = true
+  masComentados: MasComentados[] = []
 
   musica() {
       this.service.getMusica().subscribe(res => {
@@ -49,9 +50,26 @@ export class ContenidoComponent {
   }
 
   mostrarMasComentados() {
+    let comentados : MasComentados[] = []
     this.service.getMasComentados().subscribe(res => {
-      this.contenidos = res
-
+      let tipoAnt = res[0].tipo_contenido
+      let sumaComentarios = 0
+      for (let i in res){
+        if (res[i].tipo_contenido == tipoAnt){
+          sumaComentarios += res[i].cantComentarios
+          comentados.push(res[i])
+        } else {
+          comentados.push(new MasComentados(tipoAnt,"-", sumaComentarios))
+          sumaComentarios = 0
+          tipoAnt = res[i].tipo_contenido
+          sumaComentarios += res[i].cantComentarios
+          comentados.push(res[i])
+        }
+        if(Number(i) == (res.length -1)){
+          comentados.push(new MasComentados(tipoAnt,"-", sumaComentarios))
+        }
+      }
+      this.masComentados = comentados
     })
     this.seMuestranTodosLosContenidos = false
   }
