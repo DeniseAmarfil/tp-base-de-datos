@@ -8,14 +8,16 @@ import { ServiceService } from '../service.service';
   templateUrl: './popup.component.html',
   styleUrls: ['./popup.component.css']
 })
+
 export class PopupComponent{
   constructor(public service: ServiceService, private router: Router) { }
-
   PopupComponent = PopupComponent
   static visible: boolean = false
+  static messageText: string | undefined;
 
-  static mostrarPopUp() {
-      this.visible = true
+  static mostrarPopUp(message : string) {
+    this.visible = true
+    this.messageText = message
   }
 
   static ocultarPopUp() {

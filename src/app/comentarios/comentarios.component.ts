@@ -40,16 +40,21 @@ export class ComentariosComponent implements OnInit {
     const idContenido = this.idContenido()
     const comentario = new Comentario(this.titulo, this.apodo, this.descripcion, idContenido)
     console.log(comentario)
-    this.service.comentar(comentario)
-    //this.confirmarEnvioDeComentario() /// Pasar al service
+    this.service.comentar(comentario).subscribe(res => {
+      if (res[0] == 'todo ok'){
+        this.confirmarEnvioDeComentario("Comentario enviado")
+      } else {
+        this.confirmarEnvioDeComentario("No se ha podido enviar el comentario")
+      }
+    })
   }
 
   idContenido() {
     return parseInt(this.router.url.split('comentario/')[1])
   }
 
-  confirmarEnvioDeComentario() {
-    PopupComponent.mostrarPopUp()
+  confirmarEnvioDeComentario(message:string) {
+    PopupComponent.mostrarPopUp(message)
     timer(2500).subscribe(x => { 
       PopupComponent.ocultarPopUp()
       this.router.navigateByUrl("/contenido") })

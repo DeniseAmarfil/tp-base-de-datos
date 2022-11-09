@@ -5,7 +5,4 @@ export class Comentario {
         public descripcion: string,
         public id_contenido: number
     ) {}
-
-    id!: number
-
 }

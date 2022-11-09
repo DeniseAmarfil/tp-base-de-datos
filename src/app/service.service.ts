@@ -13,7 +13,6 @@ export class ServiceService {
   // static contenido: Contenido
 
   comentar(comentario: Comentario) {
-    console.log(comentario)
     return this.http.post<any>(this.API_URL + 'comentar', comentario );
   }
 
