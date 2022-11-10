@@ -10,45 +10,51 @@
 <body>
     <nav class="contenedor-links">
         <li *ngIf="!seMuestranTodosLosContenidos"class="vinculo" (click)="mostrarTodos()"> Ver todos los contenidos</li>
-        <li *ngIf="seMuestranTodosLosContenidos" class="vinculo"(click)="mostrarMasComentados()">Ver los contenidos mas comentados</li>
+        <li *ngIf="seMuestranTodosLosContenidos" class="vinculo"(click)="mostrarMasComentados()">Ver cantidad de comentarios según extension</li>
     </nav>
+    <section *ngIf="seMuestranTodosLosContenidos" class="contenedor-titulo-pagina">
+        <h1 class="titulo-mas-comentados">Contenidos clasificados según tipo</h1>
+        <h4>Seleccione un contenido para comentar</h4>
+    </section>
     <section *ngIf="!seMuestranTodosLosContenidos" class="contenedor-titulo-pagina">
         <h1 class="titulo-mas-comentados">Mas comentados</h1>
         <h4>Se muesta la cantidad de comentarios por extension y tipo de contenido</h4>
     </section>
     
-    <div class="contenedor-iconos">
-        <div *ngIf="seMuestranTodosLosContenidos"  class="contenedor-contenido">
-            <i class="fa-solid fa-music icono-contenido musica" (click)="musica()"></i>
-            <section class="fondo-musica"></section>
-        </div>
+    <div class="contenedor-iconos-tabla1"  *ngIf="seMuestranTodosLosContenidos">
+        <div class="contenedor-iconos">
+            <div class="contenedor-contenido">
+                <i class="fa-solid fa-music icono-contenido musica" (click)="musica()"></i>
+                <section class="fondo-musica"></section>
+            </div>
 
-        <div *ngIf="seMuestranTodosLosContenidos" class="contenedor-contenido">
-            <i class="fa-regular fa-circle-play icono-contenido video" (click)="video()"></i>
-        </div>
+            <div class="contenedor-contenido">
+                <i class="fa-regular fa-circle-play icono-contenido video" (click)="video()"></i>
+            </div>
 
-        <div *ngIf="seMuestranTodosLosContenidos"class="contenedor-contenido">
-            <i class="fa-regular fa-file icono-contenido documento" (click)="documento()"></i>
-        </div>
+            <div class="contenedor-contenido">
+                <i class="fa-regular fa-file icono-contenido documento" (click)="documento()"></i>
+            </div>
 
-    </div>
-    <div class="contenedor-tabla" *ngIf="seMuestranTodosLosContenidos">
-        <thead> 
-            <tr> 
-                <th>Titulo</th> 
-                <th *ngIf="seMuestranTodosLosContenidos">Extension</th> 
-                <th>Cant comentarios</th>
-            </tr> 
-            <table class="tabla"> 
-                <tbody> 
-                    <tr *ngFor="let contenido of contenidos"> 
-                        <td class="titulo vinculo" (click)="irAComentar(contenido.id)">{{contenido.titulo}}</td><td>{{contenido.extension}}</td><td class="cant-comentarios">{{contenido.cantComentarios}}</td>
-                    </tr>
-                    
-                </tbody>
-                <p *ngIf="noHayContenido()" class="sin-contenido">No se encontró contenido para mostrar.</p>
-            </table>
-        </thead> 
+        </div>
+        <div class="contenedor-tabla">
+            <thead> 
+                <tr> 
+                    <th>Titulo</th> 
+                    <th *ngIf="seMuestranTodosLosContenidos">Extension</th> 
+                    <th>Cantidad de comentarios</th>
+                </tr> 
+                <table class="tabla"> 
+                    <tbody> 
+                        <tr *ngFor="let contenido of contenidos"> 
+                            <td class="titulo vinculo" (click)="irAComentar(contenido.id)">{{contenido.titulo}}</td><td>{{contenido.extension}}</td><td class="cant-comentarios">{{contenido.cantComentarios}}</td>
+                        </tr>
+                        
+                    </tbody>
+                    <p *ngIf="noHayContenido()" class="sin-contenido">No se encontró contenido para mostrar.</p>
+                </table>
+            </thead> 
+        </div>
     </div>
     <div class="contenedor-tabla" *ngIf="!seMuestranTodosLosContenidos">
         <thead> 

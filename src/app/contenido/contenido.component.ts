@@ -18,26 +18,28 @@ export class ContenidoComponent {
   seMuestranTodosLosContenidos = true
   masComentados: MasComentados[] = []
 
+  ngOnInit(): void {
+    this.musica()
+  }
+
+
   musica() {
       this.service.getMusica().subscribe(res => {
-        this.canciones = res
+        this.contenidos = res
       })
-      this.contenidos = this.canciones
     
   }
 
   video() {
     this.service.getVideos().subscribe(res => {
-      this.videos = res
+      this.contenidos = res
     })
-    this.contenidos = this.videos
   }
 
   documento() {
     this.service.getDocumentos().subscribe(res => {
-      this.documentos = res
+      this.contenidos = res
     })
-    this.contenidos = this.documentos
   }
 
   noHayContenido() {

@@ -6,11 +6,9 @@ import { HttpClient } from "@angular/common/http";
   providedIn: 'root'
 })
 export class ServiceService {
-  // TO-DO - aca hay que cambiar la ruta dependiendo la que se use
+
   private API_URL = 'http://127.0.0.1:5000/';
   constructor(private http: HttpClient) { }
-
-  // static contenido: Contenido
 
   comentar(comentario: Comentario) {
     return this.http.post<any>(this.API_URL + 'comentar', comentario );
@@ -18,7 +16,6 @@ export class ServiceService {
 
   buscarTituloContPorId(id: number) {
     return this.http.get<Contenido[]>(this.API_URL + 'contenido/'+id );
-    //return 'stub titulo contenido'
   }
 
   getMusica() {

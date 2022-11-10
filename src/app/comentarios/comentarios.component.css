@@ -75,3 +75,12 @@ input {
  app-popup {
     position: fixed;
  }
+
+ @media (max-width: 780px) {
+    .contenedor-principal {
+        width: 90%;
+        height: 50%;
+        background-color: rgba(20, 0, 31, 0.5);
+        padding: 3em;
+    }
+}
