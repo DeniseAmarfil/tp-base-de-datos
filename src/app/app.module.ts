@@ -8,6 +8,7 @@ import { ComentariosComponent } from './comentarios/comentarios.component'
 import { ContenidoComponent } from './contenido/contenido.component'
 import { PopupComponent } from './popup/popup.component'
 import { HttpClientModule } from "@angular/common/http";
+import { ContenidoComentariosComponent } from './contenido-comentarios/contenido-comentarios.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { HttpClientModule } from "@angular/common/http";
     ComentariosComponent,
     routingComponents,
     PopupComponent,
+    ContenidoComentariosComponent,
   ],
   imports: [
     BrowserModule,

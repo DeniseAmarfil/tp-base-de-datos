@@ -65,9 +65,19 @@
             </tr> 
             <table class="tabla"> 
                 <tbody> 
-                    <tr *ngFor="let a of masComentados"> 
-                        <td>{{a.tipo_contenido}}</td><td>{{a.extension}}</td><td class="cant-comentarios">{{a.cantComentarios}}</td>
-                    </tr>
+                    <div *ngFor="let a of masComentados">
+                        <tr *ngIf="!esCorteControl(a.extension)"> 
+                            <td>{{a.tipo_contenido}}</td>
+                            <td>{{a.extension}}</td>
+                            <td class="cant-comentarios">{{a.cantComentarios}}</td> 
+                        </tr>
+                        <tr *ngIf="esCorteControl(a.extension)" class="corte-control">
+                            <td>Cantidad total:</td>
+                            <td></td>
+                            <td class="cant-comentarios">{{a.cantComentarios}}</td>
+                        </tr>
+                    </div>
+                    
                     
                 </tbody>
                 <p *ngIf="noHayContenido()" class="sin-contenido">No se encontró contenido para mostrar.</p>

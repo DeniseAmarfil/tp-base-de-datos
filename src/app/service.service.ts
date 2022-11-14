@@ -33,4 +33,12 @@ export class ServiceService {
   getMasComentados() {
     return this.http.get<MasComentados[]>(this.API_URL + 'mas_comentados');
   }
+
+  buscarComentariosDeUnContenido(id: number) {
+    return this.http.get<Comentario[]>(this.API_URL + 'comentarios/'+id );
+  }
+
+  borrarComentario(id: number) {
+    return this.http.delete<any>(this.API_URL + 'eliminarComentario/'+id );
+  }
 }

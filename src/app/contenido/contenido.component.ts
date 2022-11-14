@@ -2,6 +2,7 @@ import { Contenido, MasComentados } from './../../Dominio/Contenido';
 import { ServiceService } from './../service.service';
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-contenido',
@@ -9,6 +10,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./contenido.component.css']
 })
 export class ContenidoComponent {
+  private subscription: Subscription = new Subscription();
   constructor(public service: ServiceService, private router: Router) { }
 
   contenidos!: Contenido[] | null
@@ -24,22 +26,22 @@ export class ContenidoComponent {
 
 
   musica() {
-      this.service.getMusica().subscribe(res => {
+    this.subscription.add( this.service.getMusica().subscribe(res => {
         this.contenidos = res
-      })
+      }))
     
   }
 
   video() {
-    this.service.getVideos().subscribe(res => {
+    this.subscription.add(this.service.getVideos().subscribe(res => {
       this.contenidos = res
-    })
+    }))
   }
 
   documento() {
-    this.service.getDocumentos().subscribe(res => {
+    this.subscription.add(this.service.getDocumentos().subscribe(res => {
       this.contenidos = res
-    })
+    }))
   }
 
   noHayContenido() {
@@ -53,7 +55,7 @@ export class ContenidoComponent {
 
   mostrarMasComentados() {
     let comentados : MasComentados[] = []
-    this.service.getMasComentados().subscribe(res => {
+    this.subscription.add(this.service.getMasComentados().subscribe(res => {
       let tipoAnt = res[0].tipo_contenido
       let sumaComentarios = 0
       for (let i in res){
@@ -72,12 +74,17 @@ export class ContenidoComponent {
         }
       }
       this.masComentados = comentados
-    })
+    }))
     this.seMuestranTodosLosContenidos = false
   }
-
+  esCorteControl(data:string){
+    return data == "-"
+  }
   irAComentar(id: number) {
     this.router.navigateByUrl("/comentario/" + id)
+  }
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 
 }

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.2.0/css/all.css">
+  <title>Document</title>
+</head>
+<body>
+    <div class="volver" (click)="volver()">Volver</div>
+    <div class="container">
+        <div class="contenedor-nombre-contenido">
+            <h2 class="nombre-contenido">{{tituloContenido}}</h2>
+            <div class="nuevo-comentario" (click)="irAComentar()">Nuevo Comentario</div>
+        </div>
+        <div *ngFor="let comentario of comentarios" class="contenedor-card">
+            <div class="card">
+                <div class="card-titulo">
+                    <h2>{{comentario.titulo}}</h2>
+                    <p>{{comentario.apodoComentarista}}</p>
+                </div>
+                <h4>{{comentario.descripcion}}</h4>
+            </div>
+            <img class="trash" src="../../assets/trash-white.png" alt="" (click)="borrarComentario(comentario.id_comentario)">
+        </div>
+        <p *ngIf="noHayComentarios()" class="card">No se encontraron comentarios para mostrar.</p>
+        <app-popup></app-popup>
+    </div>
+</body>
+</html>
+<router-outlet></router-outlet>

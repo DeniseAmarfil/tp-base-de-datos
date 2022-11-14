@@ -1,6 +1,8 @@
 body {
     position: relative;
     display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .pop-up {
     width: 20em;
@@ -12,7 +14,9 @@ body {
     justify-content: center;
     align-items: center;
 }
-
+.texto-ventana-emergente{
+    margin-left: 1em;
+}
 .img-check{
     font-size: 3em;
     color: white;

@@ -71,6 +71,10 @@ li {
   height: 70%;
 
 }
+.corte-control{
+  font-weight: bold;
+  background-color: rgba(0, 0, 0, 0.822);
+}
 
 /* ------------------------------- ESTILO TABLAS -------------------------------*/
 .contenedor-tabla {
