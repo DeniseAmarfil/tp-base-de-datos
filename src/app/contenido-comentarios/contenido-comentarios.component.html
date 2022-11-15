@@ -7,7 +7,8 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.2.0/css/all.css">
   <title>Document</title>
 </head>
-<body>
+<div *ngIf="cargando">Cargando...</div>
+<body *ngIf="!cargando">
     <div class="volver" (click)="volver()">Volver</div>
     <div class="container">
         <div class="contenedor-nombre-contenido">

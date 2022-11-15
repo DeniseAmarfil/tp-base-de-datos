@@ -17,15 +17,20 @@ export class ContenidoComentariosComponent implements OnInit {
   
     tituloContenido!: string | undefined;
     comentarios!: Comentario[] | null
+    cargando:boolean = true
     ngOnInit(): void {
       const idContenido = this.idContenido()
       this.subscription.add( this.service.buscarTituloContPorId(idContenido).subscribe(res => {
         let titulo = res.at(0)?.titulo + " - " + res.at(0)?.tipo_contenido 
         this.tituloContenido = titulo
       }))
-      this.subscription.add( this.service.buscarComentariosDeUnContenido(idContenido).subscribe(res =>{
-        this.comentarios = res
-      }))
+      timer(1000).subscribe( x =>
+        this.subscription.add( this.service.buscarComentariosDeUnContenido(idContenido).subscribe(res =>{
+          this.comentarios = res
+          this.cargando=false
+        }))
+      )
+      
     }
     
     borrarComentario(id:number){
