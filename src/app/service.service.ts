@@ -37,8 +37,14 @@ export class ServiceService {
   buscarComentariosDeUnContenido(id: number) {
     return this.http.get<Comentario[]>(this.API_URL + 'comentarios/'+id );
   }
+  buscarComentario(id: number) {
+    return this.http.get<Comentario[]>(this.API_URL + 'comentario/'+id );
+  }
 
   borrarComentario(id: number) {
     return this.http.delete<any>(this.API_URL + 'eliminarComentario/'+id );
+  }
+  editarComentario(comentarioEditado : Comentario) {
+    return this.http.put<any>(this.API_URL + 'editarComentario', comentarioEditado);
   }
 }

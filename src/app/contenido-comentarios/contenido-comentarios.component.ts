@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { timer } from 'rxjs';
+import { timer, UnaryFunction } from 'rxjs';
 import { Comentario } from 'src/Dominio/Comentario';
 import { PopupComponent } from '../popup/popup.component';
 import { ServiceService } from '../service.service';
@@ -18,6 +18,7 @@ export class ContenidoComentariosComponent implements OnInit {
     tituloContenido!: string | undefined;
     comentarios!: Comentario[] | null
     cargando:boolean = true
+
     ngOnInit(): void {
       const idContenido = this.idContenido()
       this.subscription.add( this.service.buscarTituloContPorId(idContenido).subscribe(res => {
@@ -33,17 +34,13 @@ export class ContenidoComentariosComponent implements OnInit {
       
     }
     
-    borrarComentario(id:number){
-      console.log(id)
-      this.subscription.add( this.service.borrarComentario(id).subscribe(res =>{
-        if (res.mensaje.includes('1451')){
-          this.respuestaPopUp("No se puede eliminar ya que el comentario tiene réplicas.", false)
-        } else if (res.mensaje.includes('comentario eliminado')){
-          this.respuestaPopUp("Comentario eliminado.", true)
-        } else {
-          this.respuestaPopUp("Hubo un error al eliminar el comentario. Error: "+res.mensaje, false)
-        }
-      }))
+    borrarComentario(id_comentario:number){
+      this.respuestaPopUpConfirmacion(id_comentario)
+      
+    }
+
+    editarComentario(id_comentario:number){
+      this.router.navigateByUrl("comentario/"+this.idContenido()+"/agregarComentario/"+id_comentario)
     }
     respuestaPopUp(message:string, successState:boolean) {
       PopupComponent.mostrarPopUp(message, successState)
@@ -52,6 +49,10 @@ export class ContenidoComentariosComponent implements OnInit {
         this.ngOnInit()
         this.cargando = true
        })
+    }
+    respuestaPopUpConfirmacion(id_comentario:number) {
+      PopupComponent.mostrarPopUpConfirmacion(id_comentario, this.idContenido())
+      this.ngOnInit()
     }
     irAComentar() {
       this.router.navigateByUrl("comentario/"+this.idContenido()+"/agregarComentario")

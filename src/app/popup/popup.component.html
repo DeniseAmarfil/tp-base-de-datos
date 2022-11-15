@@ -1,6 +1,14 @@
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.2.0/css/all.css">
 <div *ngIf="PopupComponent.esVisible()" class="pop-up">
-    <h3 class="texto-ventana-emergente">{{PopupComponent.messageText}}</h3>
     <i *ngIf="PopupComponent.esSuccess()" class="fa-regular fa-circle-check img-check"></i>
     <i *ngIf="!PopupComponent.esSuccess()" class="fa-regular fa-circle-xmark img-check"></i>
+    <h3 class="texto-ventana-emergente">{{PopupComponent.messageText}}</h3>
+</div>
+
+<div *ngIf="PopupComponent.esVisibleConfirmacion()" class="pop-up">
+    <h3 class="texto-ventana-emergente">Esta seguro que desea eliminar el comentario?</h3>
+    <div class="contenedor-botones">
+        <button class="boton boton-secundario" (click)="cancelar()" >Cancelar</button>
+        <button class="boton boton-primario" (click)="aceptar()">Aceptar</button>
+    </div>
 </div>

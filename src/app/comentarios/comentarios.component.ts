@@ -22,14 +22,27 @@ export class ComentariosComponent implements OnInit {
   descripcion!: string
 
   tituloContenido!: string | undefined;
+  idComentario!: any;
+  esEdicion!: boolean
 
 
   ngOnInit(): void {
-    const idContenido = this.idContenido()
-    this.subscription.add( this.service.buscarTituloContPorId(idContenido).subscribe(res => {
+    this.esEdicion = this.router.url.includes("agregarComentario/")
+    if(this.esEdicion){
+      this.idComentario = Number(this.router.url.split('agregarComentario/')[1])
+      this.subscription.add( this.service.buscarComentario(this.idComentario).subscribe(res => {
+        this.descripcion = res.at(0)!.descripcion
+        this.apodo = res.at(0)!.apodoComentarista
+        this.titulo = res.at(0)!.titulo
+      }))
+    }
+    timer(100).subscribe( x => {
+      const idContenido = this.idContenido()
+      this.subscription.add( this.service.buscarTituloContPorId(idContenido).subscribe(res => {
       let titulo = res.at(0)?.titulo + " - " + res.at(0)?.tipo_contenido 
       this.tituloContenido = titulo
-    }))
+      }))
+  })
   }
 
   irAContenidos() {
@@ -39,14 +52,25 @@ export class ComentariosComponent implements OnInit {
   comentar() {
     const idContenido = this.idContenido()
     const comentario = new Comentario(this.titulo, this.apodo, this.descripcion, idContenido)
-    console.log(comentario)
-    this.subscription.add( this.service.comentar(comentario).subscribe(res => {
-      if (res.mensaje.includes("Comentario agregado")){
-        this.confirmarEnvioDeComentario("Comentario enviado", true)
-      } else {
-        this.confirmarEnvioDeComentario("No se ha podido enviar el comentario. Error: "+res.mensaje, false)
-      }
-    }))
+    if(this.esEdicion){
+      comentario.id_comentario = this.idComentario
+      this.subscription.add( this.service.editarComentario(comentario).subscribe(res => {
+        if (res.mensaje.includes("Comentario modificado")){
+          this.confirmarEnvioDeComentario("Comentario modificado.", true)
+        } else {
+          this.confirmarEnvioDeComentario("No se ha podido modificar el comentario. Error: "+res.mensaje, false)
+        }
+      }))
+    }else{
+      this.subscription.add( this.service.comentar(comentario).subscribe(res => {
+        if (res.mensaje.includes("Comentario agregado")){
+          this.confirmarEnvioDeComentario("Comentario enviado", true)
+        } else {
+          this.confirmarEnvioDeComentario("No se ha podido enviar el comentario. Error: "+res.mensaje, false)
+        }
+      }))
+    }
+    
   }
 
   idContenido() {

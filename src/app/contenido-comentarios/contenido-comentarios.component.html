@@ -18,15 +18,18 @@
             <h2 class="nombre-contenido">{{tituloContenido}}</h2>
             <div class="nuevo-comentario" (click)="irAComentar()">Nuevo Comentario</div>
         </div>
-        <div *ngFor="let comentario of comentarios" class="contenedor-card">
-            <div class="card">
-                <div class="card-titulo">
-                    <h2>{{comentario.titulo}}</h2>
-                    <p>{{comentario.apodoComentarista}}</p>
+        <div class="comentarios" *ngIf="!noHayComentarios()">
+            <div *ngFor="let comentario of comentarios" class="contenedor-card">
+                <div class="card">
+                    <div class="card-titulo">
+                        <h2>{{comentario.titulo}}</h2>
+                        <p>{{comentario.apodoComentarista}}</p>
+                    </div>
+                    <h4>{{comentario.descripcion}}</h4>
                 </div>
-                <h4>{{comentario.descripcion}}</h4>
+                <img class="edit" src="../../assets/pencil.png" alt="" (click)="editarComentario(comentario.id_comentario)" >
+                <img class="trash" src="../../assets/delete.png" alt="" (click)="borrarComentario(comentario.id_comentario)">
             </div>
-            <img class="trash" src="../../assets/trash-white.png" alt="" (click)="borrarComentario(comentario.id_comentario)">
         </div>
         <p *ngIf="noHayComentarios()" class="card">No se encontraron comentarios para mostrar.</p>
         <app-popup></app-popup>

@@ -8,6 +8,7 @@ const routes: Routes = [
   { path: 'contenido', component: ContenidoComponent, pathMatch: 'full' },
   { path: 'comentario/:id-contenido', component: ContenidoComentariosComponent, pathMatch: 'full' },
   { path: 'comentario/:id-contenido/agregarComentario', component: ComentariosComponent, pathMatch: 'full' },
+  { path: 'comentario/:id-contenido/agregarComentario/:id_comentario', component: ComentariosComponent, pathMatch: 'full' },
   { path: '', redirectTo: 'contenido', pathMatch: 'full'},
   { path: '**', redirectTo: 'contenido', pathMatch: 'full'}
 ]

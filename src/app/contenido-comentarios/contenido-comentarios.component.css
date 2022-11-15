@@ -1,4 +1,3 @@
-
 .container{
   display: flex;
   flex-direction: column;
@@ -30,6 +29,26 @@
 .nuevo-comentario:hover{
   background-color: rgba(0, 0, 0, 0.623);
 }
+.comentarios{
+  margin-top: 1em;
+  overflow-y: scroll;
+  height: 70vh;
+}
+.comentarios::-webkit-scrollbar {
+  -webkit-appearance: none;
+}
+
+.comentarios::-webkit-scrollbar:vertical {
+  width:10px;
+}
+.comentarios::-webkit-scrollbar-button:increment,.comentarios::-webkit-scrollbar-button {
+  display: none;
+} 
+.comentarios::-webkit-scrollbar-thumb {
+  background-color: #000000;
+  border-radius: 10px;
+  border: 2px solid #b412ff;
+}
 .contenedor-card{
   display: flex;
   align-items: center;
@@ -43,9 +62,10 @@
   padding: 1em;
   background-color: rgba(0, 0, 0, 0.555);
 }
-.trash{
-  height: 30%;
+.trash, .edit{
+  height: 3em;
   cursor: pointer;
+  margin: 1em;
 }
 .trash:hover{
   background-color: rgba(0, 0, 0, 0.589);
@@ -55,7 +75,9 @@
   justify-content: space-between;
 }
 app-popup {
-  position: fixed;
+  position:fixed;
+  left: 30%;
+
 }
 .cargando{
   display: flex;
