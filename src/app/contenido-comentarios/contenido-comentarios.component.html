@@ -7,7 +7,10 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.2.0/css/all.css">
   <title>Document</title>
 </head>
-<div *ngIf="cargando">Cargando...</div>
+<div *ngIf="cargando" class="cargando">
+    <h1>Cargando</h1>
+    <img class="img-loader" src="../../assets/loading.png" alt="">
+</div>
 <body *ngIf="!cargando">
     <div class="volver" (click)="volver()">Volver</div>
     <div class="container">

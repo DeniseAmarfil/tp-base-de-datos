@@ -54,3 +54,16 @@
   display: flex;
   justify-content: space-between;
 }
+app-popup {
+  position: fixed;
+}
+.cargando{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.img-loader{
+  width: 3em;
+  padding: 0.5em;
+}

@@ -51,6 +51,7 @@ export class ContenidoComponent {
   mostrarTodos() {
     this.contenidos = null
     this.seMuestranTodosLosContenidos = true
+    this.musica()
   }
 
   mostrarMasComentados() {

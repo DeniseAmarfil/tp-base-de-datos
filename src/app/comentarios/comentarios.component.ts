@@ -41,10 +41,10 @@ export class ComentariosComponent implements OnInit {
     const comentario = new Comentario(this.titulo, this.apodo, this.descripcion, idContenido)
     console.log(comentario)
     this.subscription.add( this.service.comentar(comentario).subscribe(res => {
-      if (res[0] == 'todo ok'){
-        this.confirmarEnvioDeComentario("Comentario enviado")
+      if (res.mensaje.includes("Comentario agregado")){
+        this.confirmarEnvioDeComentario("Comentario enviado", true)
       } else {
-        this.confirmarEnvioDeComentario("No se ha podido enviar el comentario")
+        this.confirmarEnvioDeComentario("No se ha podido enviar el comentario. Error: "+res.mensaje, false)
       }
     }))
   }
@@ -53,8 +53,8 @@ export class ComentariosComponent implements OnInit {
     return parseInt(this.router.url.split('comentario/')[1])
   }
 
-  confirmarEnvioDeComentario(message:string) {
-    PopupComponent.mostrarPopUp(message)
+  confirmarEnvioDeComentario(message:string, success:boolean) {
+    PopupComponent.mostrarPopUp(message, success)
     timer(2500).subscribe(x => { 
       PopupComponent.ocultarPopUp()
       this.router.navigateByUrl("comentario/"+this.idContenido()) })

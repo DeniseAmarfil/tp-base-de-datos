@@ -13,11 +13,13 @@ export class PopupComponent{
   constructor(public service: ServiceService, private router: Router) { }
   PopupComponent = PopupComponent
   static visible: boolean = false
+  static success: boolean = false
   static messageText: string | undefined;
 
-  static mostrarPopUp(message : string) {
+  static mostrarPopUp(message : string, successState : boolean) {
     this.visible = true
     this.messageText = message
+    this.success = successState
   }
 
   static ocultarPopUp() {
@@ -26,5 +28,8 @@ export class PopupComponent{
 
   static esVisible() {
     return this.visible
+  }
+  static esSuccess(){
+    return this.success
   }
 }

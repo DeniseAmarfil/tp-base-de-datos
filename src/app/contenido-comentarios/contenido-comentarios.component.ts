@@ -24,7 +24,7 @@ export class ContenidoComentariosComponent implements OnInit {
         let titulo = res.at(0)?.titulo + " - " + res.at(0)?.tipo_contenido 
         this.tituloContenido = titulo
       }))
-      timer(1000).subscribe( x =>
+      timer(500).subscribe( x =>
         this.subscription.add( this.service.buscarComentariosDeUnContenido(idContenido).subscribe(res =>{
           this.comentarios = res
           this.cargando=false
@@ -37,17 +37,20 @@ export class ContenidoComentariosComponent implements OnInit {
       console.log(id)
       this.subscription.add( this.service.borrarComentario(id).subscribe(res =>{
         if (res.mensaje.includes('1451')){
-          this.respuestaPopUp("No se pudo eliminar ya que el comentario tiene réplicas")
+          this.respuestaPopUp("No se puede eliminar ya que el comentario tiene réplicas.", false)
         } else if (res.mensaje.includes('comentario eliminado')){
-          this.respuestaPopUp("Comentario eliminado")
+          this.respuestaPopUp("Comentario eliminado.", true)
+        } else {
+          this.respuestaPopUp("Hubo un error al eliminar el comentario. Error: "+res.mensaje, false)
         }
       }))
     }
-    respuestaPopUp(message:string) {
-      PopupComponent.mostrarPopUp(message)
+    respuestaPopUp(message:string, successState:boolean) {
+      PopupComponent.mostrarPopUp(message, successState)
       timer(4000).subscribe(x => { 
         PopupComponent.ocultarPopUp()
         this.ngOnInit()
+        this.cargando = true
        })
     }
     irAComentar() {
